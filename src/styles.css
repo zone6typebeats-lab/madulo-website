@@ -1,0 +1,236 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Madulo Properties design system.
+ * Palette is derived from the supplied logo: charcoal/black wordmark on white,
+ * with a restrained gold accent and the heritage colours used only as hairlines.
+ */
+
+@theme inline {
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-gold: var(--gold);
+  --color-gold-foreground: var(--gold-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-whatsapp: var(--whatsapp);
+  --color-whatsapp-foreground: var(--whatsapp-foreground);
+  --color-heritage-yellow: var(--heritage-yellow);
+  --color-heritage-blue: var(--heritage-blue);
+  --color-heritage-red: var(--heritage-red);
+  --color-heritage-green: var(--heritage-green);
+  --color-sidebar: var(--background);
+  --color-sidebar-foreground: var(--foreground);
+  --color-sidebar-primary: var(--primary);
+  --color-sidebar-primary-foreground: var(--primary-foreground);
+  --color-sidebar-accent: var(--accent);
+  --color-sidebar-accent-foreground: var(--accent-foreground);
+  --color-sidebar-border: var(--border);
+  --color-sidebar-ring: var(--ring);
+  --color-chart-1: var(--heritage-yellow);
+  --color-chart-2: var(--heritage-blue);
+  --color-chart-3: var(--heritage-red);
+  --color-chart-4: var(--heritage-green);
+  --color-chart-5: var(--gold);
+
+  --shadow-card: 0 1px 2px oklch(0.17 0.005 260 / 0.04), 0 12px 32px -16px oklch(0.17 0.005 260 / 0.18);
+  --shadow-float: 0 10px 30px -10px oklch(0.17 0.005 260 / 0.35);
+  --ease-premium: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+:root {
+  --radius: 0.25rem;
+  --background: oklch(0.985 0.004 85);
+  --foreground: oklch(0.17 0.005 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.17 0.005 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.17 0.005 260);
+  --primary: oklch(0.2 0.005 260);
+  --primary-foreground: oklch(0.985 0.004 85);
+  --secondary: oklch(0.95 0.006 85);
+  --secondary-foreground: oklch(0.2 0.005 260);
+  --muted: oklch(0.955 0.006 85);
+  --muted-foreground: oklch(0.5 0.01 260);
+  --accent: oklch(0.93 0.01 85);
+  --accent-foreground: oklch(0.2 0.005 260);
+  --gold: oklch(0.7 0.12 80);
+  --gold-foreground: oklch(0.17 0.005 260);
+  --destructive: oklch(0.55 0.2 27);
+  --destructive-foreground: oklch(0.985 0.004 85);
+  --border: oklch(0.9 0.008 85);
+  --input: oklch(0.86 0.01 85);
+  --ring: oklch(0.7 0.12 80);
+  --whatsapp: oklch(0.74 0.19 150);
+  --whatsapp-foreground: oklch(1 0 0);
+  --heritage-yellow: oklch(0.82 0.16 85);
+  --heritage-blue: oklch(0.42 0.16 262);
+  --heritage-red: oklch(0.55 0.21 25);
+  --heritage-green: oklch(0.48 0.14 150);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+}
+
+/* Small-caps tracking label, echoing the "PROPERTIES" lockup in the logo */
+@utility eyebrow {
+  font-size: 0.6875rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-weight: 600;
+  color: var(--color-gold);
+}
+
+/* Four-colour heritage hairline */
+@utility heritage-rule {
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    var(--color-heritage-yellow) 0 25%,
+    var(--color-heritage-blue) 25% 50%,
+    var(--color-heritage-red) 50% 75%,
+    var(--color-heritage-green) 75% 100%
+  );
+}
+
+@utility container-site {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 80rem;
+  padding-inline: 1.25rem;
+  @media (min-width: 640px) { padding-inline: 1.5rem; }
+  @media (min-width: 1024px) { padding-inline: 2.5rem; }
+}
+
+@utility nav-underline {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 1px;
+    background: var(--color-gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s var(--ease-premium);
+  }
+  &:hover::after, &[data-status="active"]::after {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes logo-breathe {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes line-grow {
+  from { transform: scaleY(0); opacity: 0; }
+  to { transform: scaleY(1); opacity: 1; }
+}
+
+@utility animate-rise {
+  animation: rise 0.7s var(--ease-premium) both;
+}
+
+@utility delay-120 { animation-delay: 120ms; }
+@utility delay-240 { animation-delay: 240ms; }
+@utility delay-360 { animation-delay: 360ms; }
+
+@utility logo-breathe {
+  animation: logo-breathe 5s ease-in-out 0.8s infinite;
+}
+
+@utility coming-soon-line {
+  position: absolute;
+  top: 13%;
+  bottom: 13%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--color-border) 20%, var(--color-border) 80%, transparent);
+  transform-origin: center;
+  animation: line-grow 1.2s var(--ease-premium) 0.4s both;
+}
+
+@utility coming-soon-line-left {
+  left: max(1.25rem, calc((100vw - 80rem) / 2));
+}
+
+@utility coming-soon-line-right {
+  right: max(1.25rem, calc((100vw - 80rem) / 2));
+}
+
+/* Scroll reveal: toggled by the Reveal component */
+@utility reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s var(--ease-premium), transform 0.7s var(--ease-premium);
+  &[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* View transitions for calm page changes */
+@view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root) {
+  animation-duration: 0.28s;
+  animation-timing-function: var(--ease-premium);
+}
